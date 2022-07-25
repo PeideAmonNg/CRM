@@ -1,5 +1,5 @@
-var Customer = require('../database/Customer');
-var SalesOpportunity = require('../database/SalesOpportunity');
+var Customer = require('../models/Customer');
+var SalesOpportunity = require('../models/SalesOpportunity');
 var mongoose = require('mongoose');
 
 function getCustomers() {

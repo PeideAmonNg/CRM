@@ -1,4 +1,4 @@
-var SalesOpportunity = require('../database/SalesOpportunity');
+var SalesOpportunity = require('../models/SalesOpportunity');
 var mongoose = require('mongoose');
 
 function getSalesOpportunities() {
