@@ -48,4 +48,10 @@ In a terminal inside /client, run `npm start`.
 
 In another terminal inside /server, set env variable `PORT` to `8000` and run `npm start`.
 
-Access web application at `localhost:3000` in the browser.
+Access the web application at `localhost:3000`
+
+# Run Tests
+
+Unit tests of the API endpoints have been written using Jest and mockingoose.
+
+In a terminal inside /server, run `npm test`.
