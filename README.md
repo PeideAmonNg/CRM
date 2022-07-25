@@ -45,9 +45,9 @@ The code files are split into the following directories:
 
 To run the application in a dev environment:
 
-In a terminal inside /client, run `npm start`.
+In a terminal inside /client, run 'npm i', then run `npm start`.
 
-In another terminal inside /server, set env variable `PORT` to `8000` and run `npm start`.
+In another terminal inside /server, run 'npm i', then set env variable `PORT` to `8000` and run `npm start`.
 
 Access the web application at `localhost:3000`
 
