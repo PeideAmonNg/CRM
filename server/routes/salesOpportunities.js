@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
-var SalesOpportunity = require('../database/SalesOpportunity');
 var mongoose = require('mongoose');
 
-/* GET users listing. */
+var {
+  getSalesOpportunities,
+  createSalesOpportunity,
+  updateSalesOpportunity
+} = require('../services/salesOpportunities');
+
 router.get('/', async function(req, res, next) {
   try {
-    let salesOpps = await SalesOpportunity.find();
+    let salesOpps = await getSalesOpportunities();
     res.send(salesOpps);
   } catch(err) {
       console.log(err);
@@ -14,58 +18,24 @@ router.get('/', async function(req, res, next) {
   }
 });
 
-router.get('/:salesOppId', async function(req, res, next) {
-  try {
-    let salesOppId = req.params.salesOppId;
-    let salesOpp = await SalesOpportunity.findOne({_id: salesOppId});
-    res.send(salesOpp);
-  } catch(err) {
-      console.log(err);
-      res.status(500).send('Something broke!')
-  }
-});
-
-router.post('/', function(req, res, next) {
-  console.log("called post", req.body);
+router.post('/', async function(req, res, next) {
   try{
-    let c = req.body;
-    SalesOpportunity.init();
-    let salesOpp = new SalesOpportunity({...req.body, _id: mongoose.Types.ObjectId() });
-    salesOpp.save(err => {
-      if (err) {
-        console.log(err);
-        res.status(500).send('Something broke!')
-      } else {
-        res.send(salesOpp);
-      }
-    });
+    let salesOpp = await createSalesOpportunity(req.body);
+    res.status(201).send(salesOpp);
   } catch(e) {
     console.log(e);
+    res.status(500).send('Something broke!')
   }
  });
 
 router.put('/', async function(req, res, next) {
   try{
-    let salesOpp = await SalesOpportunity.findOne({_id: req.body._id});
-    salesOpp.name = req.body.name;
-    salesOpp.status = req.body.status;
-    salesOpp.save(err => {
-      if(err) {
-        console.log(err);
-        res.status(500).send('Something broke!')
-      } else {
-        res.send(salesOpp);
-      }
-    });
-    
+    let salesOpp = await updateSalesOpportunity(req.body);
+    res.send(salesOpp);
   } catch(e) {    
     console.log(e);
     res.status(500).send('Something broke!')
   }
-});
-
-router.delete('/', function(req, res, next) {
-  res.send('respond with a resource');
 });
 
 module.exports = router;
