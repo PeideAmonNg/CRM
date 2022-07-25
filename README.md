@@ -7,7 +7,7 @@ This project is a CRM web application with the following functionalities:
 - View list of customer sales opportunities.
 - Create and edit customer sales opportunity.
 
-The web application is made in the client-server achitecture. The React client uses the API exposed by the Express server, with the data stored in MongoDB.
+The web application is implemented in the client-server achitecture. The React client uses the API exposed by the Express server, with the data stored in MongoDB.
 
 ## Client
 
@@ -37,8 +37,9 @@ The data models:
 
 The code files are split into the following directories:
 
-- `database` - the Customer and SalesOpportunity Mongoose database schemas.
+- `models` - the Customer and SalesOpportunity Mongoose database models.
 - `routes` -  implementation of the API endpoints.
+- `services` - route-independent services which provide the actual functionalities of reading/writing customers and sales Opportunities from/to the database.
 
 # Run Project
 
